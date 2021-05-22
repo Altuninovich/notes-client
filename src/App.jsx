@@ -1,5 +1,5 @@
 import React from 'react'
-import {BrowserRouter as Router} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route, HashRouter} from "react-router-dom";
 import {useRoutes} from './routes'
 import {useAuth} from './hooks/auth.hook'
 import {AuthContext} from './context/AuthContext'
@@ -20,12 +20,12 @@ function App() {
     <AuthContext.Provider value={{
       token, login, logout, userId, isAuthenticated
     }}>
-      <Router>
+      <HashRouter basename={process.env.PUBLIC_URL}>
         { isAuthenticated && <Navbar /> }
         <div className="container">
           {routes}
         </div>
-      </Router>
+        </HashRouter>
     </AuthContext.Provider>
   )
 }

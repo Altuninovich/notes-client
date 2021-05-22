@@ -5,14 +5,13 @@ export const useHttp = () => {
   const [error, setError] = useState(null)
 
   const request = useCallback(async (url, method = 'GET', body = null, headers = {}) => {
-    const fullUrl = 'https://still-cove-75223.herokuapp.com/' + url
+    const fullUrl = `https://still-cove-75223.herokuapp.com${url}`
     setLoading(true)
     try {
       if (body) {
         body = JSON.stringify(body)
-        headers['Content-Type'] = 'application/json'
+        headers["Content-Type"] = "application/json"
       }
-
       const response = await fetch(fullUrl, {method, body, headers})
       const data = await response.json()
 
